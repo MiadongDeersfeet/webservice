@@ -1,0 +1,80 @@
+package com.kh.first.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/get.do")
+public class RequestGetServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public RequestGetServlet() {
+        super();
+    }
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * 톰캣 실행 -> web.xml 파싱 
+		 * init() => service() => doGet()/doPost() => destroy()
+		 * 서블릿 생명주기 / 싱글톤 패턴으로 객체 하나만을 사용 / 톰캣이 멀티스레드 처리(스레드풀)
+		 * 
+		 */
+		//System.out.println("헉 진짜임?");
+		
+		/*
+		 * Dynamic WebProject진행 시 Servlet을 Controller로 사용
+		 * 
+		 * - 컨트롤러가 하는 일 -
+		 * 1. 데이터 가공
+		 * 2. 요청처리(Service)
+		 * 3. 결과값 반환(응답화면지정)
+		 * 
+		 * View에서 Get방식으로 요청 시 doGet()가 호출됨!!
+		 * 
+		 * 
+		 * 
+		 * 
+		 */
+		//System.out.println("GET방식으로 호출됨!!");
+		/*
+		 * 인자값으로 두 개가 넘어오는데
+		 * 
+		 * 첫번째 매개변수 HttpServeletRequest 타입에는 요청 시에 전달된 내용들이 담깁니다.
+		 * => 요청 전송 방식, 요청 URL, 요청한 사용자의 정보, 사용자가 input요소에 입력한 값 등
+		 * 
+		 * 두번째 매개변수 HttpServletResponse 타입은 요청 처리 후 응답할 때 사용하는 객체
+		 * 
+		 * 요청 처리 스텝
+		 * 
+		 * 1. 우선 요청을 처리하기 위해서 요청 시 전달된 값(사용자가 입력한 값들)을 뽑는다.
+		 * => 사용자가 앞에서 넘긴 값은 Key밸류 형태로 넘어와요.(name속성값=value속성값)
+		 * => request의 Parameter라는 곳에서 전달값을 뽑아내야함.
+		 * 
+		 * 2. 뽑아낸 값을 가공해서 요청처리를 진행해야함(Service -> DAO -> DB)
+		 * 
+		 * 3. 처리결과에 따른 성공/실패 페이지 응답
+		 */
+		
+		/*
+		 * request의 parameter영역으로부터 전달된 데이터 값을 뽑아내는 방법
+		 * 
+		 * - request.getParameter("키값") : String(input요소에 적어놓은 name속성값)
+		 * => 반환형이 String이기 때문에 다른 자료형으로 사용해야 한다면 Parsing 해야함.
+		 * 
+		 * => request.getParameterValues("키값") : String[]
+		 * => 하나의 key값으로 여러 개의 value들을 받아야 할 경우 / ex) food라는 체크박스에 여러 음식을 중복체크 한 경우
+		 */
+		
+		// 1단계. 값 뽑기
+		String name = request.getParameter("name");
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}
