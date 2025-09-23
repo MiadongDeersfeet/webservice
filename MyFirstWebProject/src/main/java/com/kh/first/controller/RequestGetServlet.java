@@ -1,6 +1,9 @@
 package com.kh.first.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Arrays;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -71,6 +74,137 @@ public class RequestGetServlet extends HttpServlet {
 		// 1단계. 값 뽑기
 		String name = request.getParameter("name");
 		System.out.println(name);
+		// 경우의 수를 생각해봤을 때 "셀 수 없음"
+		// 사용자가 정상적인 값을 입력했을 경우 => "홍길동" / ""(텍스트상자가 비어있을 경우 빈문자열) / null
+		
+		String gender = request.getParameter("gender");
+		System.out.println(gender);
+		// 남 / 여 / 선택안함 / null
+		
+		int age = Integer.parseInt(request.getParameter("age"));
+		// Wrapper클래스를 이용해서 파싱
+		System.out.println(age);
+		// "14" / ""
+		// "" : 빈문자열 -> 정수가 아님 -> NumberFormatException 발생
+		
+		String city = request.getParameter("city");
+		System.out.println(city);
+		// "서울" / "제주도"
+		
+		double height = Double.parseDouble(request.getParameter("height"));
+		System.out.println(height);
+		int realHeight = (int)height;
+		// int형으로 강제형변환할 때 주의할 점은 ?
+		
+		String[] foods = request.getParameterValues("food");
+		System.out.println(Arrays.toString(foods)); // 배열의 toString 값이 넘어오기 때문에 Arrays.toString 메소드 호출!!!
+		// ["돼지고기", "초밥"] / null
+		
+		// 자주보는 상태코드
+		// 404 : 파일 또는 요청을 받아주는 서블릿을 찾지 못했을 때 발생
+		//     => 경로를 잘못 적었거나 파일명에 오타가 났을 때	
+		// 500 : 자바 소스 코드 오류
+		//     => 코드 난리났다고, 예외가 일어났다고, 예외처리를 안해놓았다고....얼른 가서 자바코드 고쳐라
+		
+		// 2단계. 데이터가공
+		// Person person = new Person(name, gender, age, city, height, foods);
+		// 만들었다 침
+		
+		// 3단계. 요청 처리(DB와의 상호작용 == JDBC/MyBatis)
+		// 보통의 흐름 : Controller에서 Service의 메소드를 호출하면서 값을 전달
+		// -> DAO호출 -> DB SQL문(INSERT)문 실행 -> 정수형태의 결과값 반환
+		// int result = new PersonService().savePerson(person);
+		
+		// 4단계. 결과값 반환 or 응답화면 지정
+		// 무조건 성공했다고 가정
+		
+		// 순수 Servlet만 사용해서 응답데이터 넘기기
+		// 사용자에게 HTML + CSS + JS 응답
+		
+		/*
+		 * 요청 처리에 성공했습니다!
+		 * 
+		 * XXX님은
+		 * XXX살이며,
+		 * 키는 XXXcm이고
+		 * 
+		 * 성별은 case 1. 선택을 안했습니다.
+		 *      case 2. 남성입니다.
+		 *      case 3. 여성입니다.
+		 *      
+		 * 거주지는 case 1. 서울입니다.
+		 *       case 2. 제주도입니다.     
+		 * 좋아하는 음식은 case 1. 없습니다.
+		 *            case 2. 치킨 머시기~ 떡볶이~      
+		 */
+		
+		// 1단계) 응답 데이터 형식 지정 -> 문서형태의 HTML / 인코딩 방식 UTF-8
+		response.setContentType("text/html; charset=UTF-8");
+		
+		// 2단계) 출력 스트림 생성
+		// 스트림 inputStream / outputStream -특수문자 영어만 쓴담
+		//         Reader   /    Writer -한글 쓴담
+		PrintWriter pw = response.getWriter();
+		
+		// 3단계) 스트림을 이용해서 HTML데이터 출력
+		pw.println("<html>");
+			pw.println("<head>");
+				pw.println("<title>순수 서블릿으로 응답해보기</title>");
+				pw.println("<style>");
+		
+				pw.println("#name{color : orange}");
+				pw.println("#age{color : orangered}");
+				pw.println("#city{color : forestgreen}");
+				pw.println("#height{color : green}");
+				pw.println("#gender{color : gold}");
+		
+				pw.println("</style>");
+			pw.println("</head>");
+		    pw.println("<body>");
+		
+		    	pw.println("<h1>요청 처리에 성공했습니다.</h1>");
+		    	
+		    	pw.printf("<span id='name'>%s</span>님은 <br>", name);
+		    	pw.printf("<span id='age'>%d</span>살이며, <br>", age);
+		    	pw.printf("<span id='city'>%s</span>에 삽니다. <br>", city);
+		    	
+		    	pw.printf("키는 <span id='height'>%.1f</span>cm이고 <br><br>", height);
+		    	
+		    	pw.print("성별은 ");
+		    	if(gender == null || "선택안함".equals(gender)) {
+		    		pw.println("선택을 안했습니다.");
+		    	} else if(gender.equals("남")) {
+		    		pw.println("<span id='gender'>남자</span>입니다.");
+		    	} else {
+		    		pw.println("<span id='gender'>여자</span>입니다.");
+		    	}
+		    	
+		    	pw.print("좋아하는 음식은 ");
+		    	if(foods == null) {
+		    		pw.println("없습니다.");
+		    	} else {
+		    		pw.println("<ul>");
+		    		
+		    		for(int i = 0; i < foods.length; i++) {
+		    			pw.printf("<li style='color:\"plum\"'>%s</li>", foods[i]);
+		    		}
+		    		
+		    		pw.println("</ul>");
+		    		pw.println("입니다.");
+		    	}
+		
+		    pw.println("<script>");
+		    	pw.print("alert('축하해~~~');");
+		    pw.println("</script>");
+		    	
+		    pw.println("</body>");
+		pw.println("</html");
+		
+		
+		
+		
+		
+		
 		
 	}
 
