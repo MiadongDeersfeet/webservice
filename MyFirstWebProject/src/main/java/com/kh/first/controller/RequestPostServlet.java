@@ -1,8 +1,8 @@
 package com.kh.first.controller;
 
 import java.io.IOException;
-import java.util.Arrays;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -74,7 +74,34 @@ public class RequestPostServlet extends HttpServlet {
 		// 특징 : 서버에서 실행되어 동적으로 웹페이지를 생성할 수 있음
 		// PHP, ASP
 		
+		// --------------------------------------------------
+		// 응답화면(JSP)에서 필요한 데이터를 넘겨줄 것(request에 담아서)
+		// parameter는 getParameter("키값") / setter는 존재하지 않음
+		// attribute => 키-밸류 세트로 묶어서 값을 만들어낼 수 있음
+		// request.setAttribute("키", "밸류");
 		
+		request.setAttribute("msg", "요청처리에 성공했습니다.");
+		request.setAttribute("name", name);
+		request.setAttribute("gender", gender);
+		request.setAttribute("age", age);
+		request.setAttribute("city", city);
+		request.setAttribute("height", height);
+		request.setAttribute("foods", foods);
+		
+		
+		
+		
+		
+		
+		
+		// 응답 데이터 생성과정을 JSP에게 위임(배정)
+		
+		// 배정 시 필요한 객체 : RequestDispatcher
+		// request.getRequestDispatcher("JSP파일의 경로");
+	
+		// 절대경로방식 으로 적어볼까요~! => /로 시작시 webapp/을 의미함
+		RequestDispatcher view = request.getRequestDispatcher("/views/response_page.jsp");
+		view.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
