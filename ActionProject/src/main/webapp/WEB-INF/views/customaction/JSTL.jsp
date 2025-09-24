@@ -48,6 +48,35 @@
 	
 	<h4>JSTL Core Library(오늘의 주인공)</h4>
 	
+	<p>
+		변수와 조건문, 반복문 등의 로직과 관련된 태그들을 제공
+	</p>
+	
+	<h5>변수(사실 변수아님 속성 선언하기 == Attribute)</h5>
+		
+	<pre>
+		솔직하게 이야기하겠습니다. 사실 그냥 아까 배운 Scope들에 새로운 속성 추가하는 방법입니다.
+		
+		[ 표현법 ]
+		&lt;c:set var="키값" value="리터럴값" scope="스코프영역지정(생략가능)" />
+		- Scope에 새로운 Attribute를 추가할 수 있는 태그
+		- 더 나아가서 어떤 Scope에 추가할건지도 지정 가능(생략 시 pageScope에 담김)
+		
+	</pre>
+	
+	<%
+		request.setAttribute("num1", "10");
+	%>
+	<c:set var="num1" value="10" />
+	<c:set var="num2" value="20" scope="request" />
+	<c:set var="result" value="${ num1 + num2 }" scope="session" />
+	
+	num1의 값 : ${ num1 } <br>
+	num2의 값 : ${ num2 } <br>
+	result의 값 : ${ result } <br>
+	
+			
+
 	
 	
 	
