@@ -2,6 +2,7 @@ package com.kh.subway.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,7 +69,22 @@ public class OrderController extends HttpServlet {
 	   
 	   // 4) 응답결과 출력
 	   if(result > 0) {
-		   response.getWriter().append("success :) ");
+		   //response.getWriter().append("success :) ");
+		   
+		   // 여기서 할 일은?
+		   
+		   // 1. 사용자에게 응답 시 출력해줄 데이터가 있다면
+		   // 어딘가에 속성으로 추가해주기
+		   
+		   // request객체의 Attribute로 세팅
+		   request.setAttribute("order", order); // "키밸류" 넣어줘야하는데 -- 주소값이 넘어가겠죠 그쵸?
+		   
+		   // 2. 응답 뷰 지정
+		   RequestDispatcher view = request.getRequestDispatcher("/views/result.jsp"); // <= 어떤 인자값을 넣어줘야할까요? jsp 파일의 경로 및 파일명을 지정해주는 거죠.
+		   															// webapp폴더부터로 경로를 봐야해요. '/'로 -- 일단 result.jsp 찾아가려면 views 폴더까지 가야죠!
+		                                                            // 
+		   view.forward(request, response); // 전달하는 메소드 포워드로 request, response 날려주기~!
+		   
 	   } else {
 		   response.getWriter().append("fail :'( ");
 	   }
