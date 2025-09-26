@@ -24,6 +24,8 @@
 		사진게시글목록조회(이미지), 상세조회, 게시글작성(다중파일업로드)
 	 -->
 	 
+	
+	 
 	 <jsp:include page="WEB-INF/views/include/header.jsp"></jsp:include>
 	 <jsp:include page="WEB-INF/views/include/main.jsp"></jsp:include>
 	 <jsp:include page="WEB-INF/views/include/footer.jsp"></jsp:include>

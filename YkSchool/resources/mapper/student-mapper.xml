@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="studentMapper">
+
+  <select id="login" resultType="com.yk.school.model.vo.Student" parameterType="com.yk.school.model.vo.Student">
+  SELECT
+         STUDENT_NO studentNo
+       , STUDENT_ID studentId
+       , STUDENT_PWD studentPwd
+       , STUDENT_NAME studentName
+       , PHONE
+       , LANG
+       , ENROLL_DATE enrollDate
+       , MODIFY_DATE modifyDate
+       , STATUS  
+    FROM
+         TB_STUDENT
+   WHERE
+         STUDENT_ID = #{studentId}
+     AND
+         STUDENT_PWD = #{studentPwd}
+     AND
+         STATUS = 'Y'              
+  </select>
+  
+  <insert id="signUp" parameterType="com.yk.school.model.vo.Student">
+  INSERT
+    INTO
+         TB_STUDENT
+         (
+         STUDENT_ID
+       , STUDENT_PWD
+       , STUDENT_NAME
+       , PHONE
+       , LANG 
+         )
+  VALUES
+         (
+         #{studentId}
+       , #{studentPwd}
+       , #{studentName}
+       , #{phone}
+       , #{lang}  
+         )        
+  </insert>
+  </mapper>
