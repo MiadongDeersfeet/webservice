@@ -17,12 +17,12 @@
 </head>
 <body>
 	
-	<jsp:include page="WEB-INF/views/include/header.jsp" /> 
+	<jsp:include page="../include/header.jsp" /> 
 	<!-- 워크 스페이스 경로 상에 보면 common 에서 하나 올라가서 include 로 들어가야하거든요? ../ 는 상위폴더 하나 위로 올라가겠다는 뜻 -->
 	
 	<h1>${ msg }</h1>
 	
-	<jsp:include page="WEB-INF/views/include/footer.jsp" />
+	<jsp:include page="../include/footer.jsp" />
 
 </body>
 </html>

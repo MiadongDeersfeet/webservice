@@ -9,7 +9,10 @@
     <fullyQualifiedTypeName name="com.kh.bank.common.Template"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.yk.school.common.Template"/>
+    <fullyQualifiedTypeName name="java.util.regex.Pattern"/>
     <fullyQualifiedTypeName name="com.kh.java.common.Template"/>
-    <fullyQualifiedTypeName name="com.kh.java.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="com.kh.java.member.model.vo.Member"/>
 </qualifiedTypeNameHistroy>

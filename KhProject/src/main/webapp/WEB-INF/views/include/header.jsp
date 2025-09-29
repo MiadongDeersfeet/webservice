@@ -73,6 +73,14 @@
 
 <body id="page-top">
 
+<c:if test="${ not empty alertMsg }">
+	<script>
+		alert("${ alertMsg }");
+	</script>
+	<c:remove var="alertMsg" scope="session" />
+</c:if>
+
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
@@ -128,7 +136,16 @@
     </div>
   </nav><br><br><br>
   
+  <script>
   
+  	const a = 2;
+  	
+  	if(a == 3) {
+  		<% 
+  		System.out.println("이거 왜 됨??");
+  		%>
+  	}
+  </script>
 
   <!-- 로그인 Modal-->
 <div class="modal fade" id="log-in">
