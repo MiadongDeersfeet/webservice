@@ -101,7 +101,7 @@
             <a class="nav-link js-scroll-trigger" href="#">공지사항</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#">게시판</a>
+            <a class="nav-link js-scroll-trigger" href="/kh/boards?page=1">게시판</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#">사진게시판</a>
@@ -135,17 +135,6 @@
       </div>
     </div>
   </nav><br><br><br>
-  
-  <script>
-  
-  	const a = 2;
-  	
-  	if(a == 3) {
-  		<% 
-  		System.out.println("이거 왜 됨??");
-  		%>
-  	}
-  </script>
 
   <!-- 로그인 Modal-->
 <div class="modal fade" id="log-in">
