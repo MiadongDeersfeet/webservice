@@ -13,9 +13,9 @@
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="java.lang.StringIndexOutOfBoundsException"/>
     <fullyQualifiedTypeName name="com.kh.java.common.Template"/>
-    <fullyQualifiedTypeName name="com.kh.java.board.model.vo.Category"/>
-    <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="com.kh.java.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="com.kh.java.member.model.vo.Member"/>
+    <fullyQualifiedTypeName name="com.kh.java.board.model.vo.Category"/>
 </qualifiedTypeNameHistroy>
